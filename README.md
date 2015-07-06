@@ -15,14 +15,14 @@ To use it you need of course AngularJS, so make sure it is loaded first. I alway
 Also you should load the stylesheet of the loupe field component:
 
 ```html
-	<link rel="stylesheet" href="style/loupeField.css">
+	<link rel="stylesheet" href="dist/ngLoupeField.min.css">
 ```
 
 Then in your HTML you should load it before the script of your main app. Like this:
 
 ```html
-	<script type="text/javascript" src="script/ngLoupeField.js"></script>
-	<script type="text/javascript" src="script/app.js"></script>
+	<script type="text/javascript" src="dist/ngLoupeField.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 ```
 
 In your main script file you should add it as dependency:
