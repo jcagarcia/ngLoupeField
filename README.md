@@ -9,7 +9,7 @@ Checkout the demo to see what it does.
 To use it you need of course AngularJS, so make sure it is loaded first. I always like to use Google's CDN for that:
 
 ```html
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
 ```
 
 Also you should load the stylesheet of the loupe field component:
