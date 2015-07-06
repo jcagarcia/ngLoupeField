@@ -2,6 +2,11 @@
 
 AngularJS directive to include loupe field component in your AngularJS applications! You can load the suggestions from a remote REST API, it also supports promises.
 
+Follows the main concept of allmighty-autocomplete[https://github.com/JustGoscha/allmighty-autocomplete] project providing a new input component to autocomplete your searches 
+but with different usage, different appearance and extra functionalities doesn't included on allmighty-autocomplete project.
+
+ngLoupeField is not a fork of allmighty-autocomplete project.
+
 Checkout the demo to see what it does.
 
 # Setup
@@ -34,3 +39,13 @@ In your main script file you should add it as dependency:
 # Usage
 
 TBC
+
+## Attributes
+
+TBC 
+
+# Example
+
+TBC
+
+# Change Log
