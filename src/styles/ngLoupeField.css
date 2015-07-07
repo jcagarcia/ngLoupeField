@@ -1,0 +1,52 @@
+/* ngLoupeField Styles */
+
+.ngLoupeField{
+  width: 100%;
+  position: relative;
+}
+
+.ngLoupeField input{
+  font-size: 1.2em;
+  width: 80%;
+  padding:0.4em;
+}
+
+.ngLoupeField span{
+  font-size: 1.2em;
+  width: 20%;
+  padding:0.4em;
+  background-color:#EEEEEE;
+  border:1px solid #000000;
+}
+
+.ngLoupeField ul{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  border-bottom: 1px solid #888;
+  z-index: 1;
+}
+
+.ngLoupeField li{
+  text-align: left;
+  list-style:none;
+  width: 100%;
+  padding:0.4em;
+  background-color: #fff;
+}
+
+.ngLoupeField li.active{
+  width: 100%;
+  background-color: #4bf;
+}
+
+.ngLoupeField .highlight {
+  background-color: #E2E2E2;
+}
+
+.ngLoupeField li.active .highlight {
+  background: #666;
+  color: #fff;
+}
