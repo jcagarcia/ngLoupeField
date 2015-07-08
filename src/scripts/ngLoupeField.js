@@ -69,16 +69,6 @@
        */
       function fnNgLoupeFieldController($scope) {
 
-        $scope.onClickLoupeBtn = function($event) {
-          // Getting loupeBtn
-          var loupeBtn = $event.currentTarget;
-          // Getting parent div
-          var parent = angular.element(loupeBtn).parent();
-          // Getting modal div
-          var modal = angular.element(parent).find("div")[0];
-          // Showing modal
-          modal.style.opacity = 1;
-        }
       }
 
       // Injecting dependencies on Directive Definition Object
