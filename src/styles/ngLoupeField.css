@@ -16,6 +16,7 @@
   width: 10%;
   padding:0.4em;
   cursor: pointer;
+  font-style: 
 }
 
 .ngLoupeFieldModal {
@@ -68,7 +69,7 @@
   cursor:pointer;
 }
 
-.ngLoupeFieldModalClose:hover { background: #00d9ff; }
+.ngLoupeFieldModalClose:hover { background: #606080; color:#ffffff; }
 
 .ngLoupeField ul{
   position: absolute;

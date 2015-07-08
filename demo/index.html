@@ -14,21 +14,41 @@
       <h1><span class="thin">AngularJS:</span> ngLoupeField Demo</h1>
     </header>
 
-    <div ng-controller="MyController">
+    <div>
+      <br/>
       <br/>
       <div class="col-md-12">
         <div class="col-md-6">
           <h2>Search for countries:</h2>
-          <ng-loupe-field id="countries" placeholder="type to search countries..."></ng-loupe-field>
+
+          <!-- ngLoupeField component, using local JSON -->
+          <ng-loupe-field id="countries" path="countries.json" placeholder="type to search countries..."></ng-loupe-field>
+          <!-- END of ngLoupeField component, using local JSON -->
+
+          <br/>
+          <br/>
+          <div class="col-md-11 description" style="text-align:center;">
+            The sample above uses local JSON object to obtain all countries.
+          </div>
         </div>
         <div class="col-md-6">
-          <h2>Search for movies:</h2>
-          <ng-loupe-field id="movies" placeholder="type to search movies..."></ng-loupe-field>
+          <h2>Search for users:</h2>
+
+          <!-- ngLoupeField component, using remote REST service -->
+          <ng-loupe-field id="users" path="http://jsonplaceholder.typicode.com/users" placeholder="type to search users..."></ng-loupe-field>
+          <!-- END of ngLoupeField component, using remote REST service -->
+
+          <br/>
+          <br/>
+          <div class="col-md-11 description" style="text-align:center;">
+            The sample above uses <a target="blank" href="http://jsonplaceholder.typicode.com/users">http://jsonplaceholder.typicode.com/users</a> remote REST service to obtain all users.
+          </div>
+
         </div>
         <br>
       </div>
 
-      <div class="main description">
+      <div class="main description" style="text-align:center;">
         This is a loupe field directive for AngularJS, packaged in an Angular module. You can check out the source code or download it here:
         <br><br>
         <a href="https://github.com/jcagarcia/ngLoupeField">ngLoupeField on GitHub</a>
@@ -43,7 +63,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
   <script type="text/javascript" src="../src/scripts/ngLoupeField.js"></script>
   <script type="text/javascript" src="app.js"></script>
-  <script type="text/javascript" src="myController.js"></script>
 
   </body>
 </html>

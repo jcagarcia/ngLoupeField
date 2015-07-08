@@ -36,10 +36,9 @@
    * This function returns the DDO (Directive Definition Object) of
    * ngLoupeField.
    */
-  function fnNgLoupeFieldDirective($interpolate) {
+  function fnNgLoupeFieldDirective($interpolate, ngLoupeFieldService) {
     return {
       restrict: "E",
-      controller: fnNgLoupeFieldController,
       replace: true,
       template: function(element, attrs) {
         return $interpolate('<div class="ngLoupeField">\
@@ -52,31 +51,40 @@
                   <div id="ngLoupeFieldModal-{{id}}" class="ngLoupeFieldModal">\
                     <div>\
                       <a href="#close" title="Close" class="ngLoupeFieldModalClose">X</a>\
-                      <h2>Modal Box</h2>\
-                      <p>{{id}}</p>\
-                      <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>\
                     </div>\
                   </div>\
                 </div>')(attrs);
+      },
+      compile: function(element, attrs, transclude) {
+        return function(scope) {
+          ngLoupeFieldService.getJSON(attrs.path).success(function(data) {
+            
+          });
+        };
       }
 
     };
   }
 
-  /* 
-   * This function implements ngLoupeField controller
-   * with all necessary logic
+  /*
+   * This function returns a service that will be injected on ngLoupeField directive
    */
-  function fnNgLoupeFieldController($scope) {
+  function fnNgLoupeFieldService($http) {
 
+    this.getJSON = function(path) {
+      var promise = $http.get(path);
+      return promise;
+    }
   }
 
   // Injecting dependencies on Directive Definition Object
-  fnNgLoupeFieldDirective.$inject = ["$interpolate"];
-
-  // Injecting dependencies on Directive Controller
-  fnNgLoupeFieldController.$inject = ["$scope"];
+  fnNgLoupeFieldDirective.$inject = ["$interpolate", "ngLoupeFieldService"];
+  // Injecting http service on Service definition
+  fnNgLoupeFieldService.$inject = ["$http"];
 
   // Generating directive ngLoupeField
   module.directive("ngLoupeField", fnNgLoupeFieldDirective);
+  // Generating service ngLoupeFieldService
+  module.service("ngLoupeFieldService", fnNgLoupeFieldService);
+
 }(angular));
