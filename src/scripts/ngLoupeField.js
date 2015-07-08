@@ -44,6 +44,37 @@
       restrict: "E",
       replace: true,
       template: function(element, attrs) {
+
+        // Id attribute is required
+        if(!attrs.id){
+          console.log("ERROR: ngLoupeField needs a valid id attribute.");
+          return;
+        }
+
+        // Columns attribute is required
+        if(!attrs.columns){
+          console.log("ERROR: ngLoupeField needs a valid columns attribute.");
+          return;
+        }
+
+        // Validating title attribute
+        if(!attrs.title){
+          attrs.title = "Select from list";
+        }
+
+        // Generating columns HTML
+        var columns = attrs.columns.split(",");
+        var htmlColumns = "";
+        var htmlColumnsTitles = "";
+        for(i in columns){
+          var column = columns[i].trim();
+          htmlColumnsTitles+="<td>" + column + "</td>";
+          htmlColumns+="<td>{{ x." + column + " }}</td>";
+        }
+
+        attrs.htmlColumnsTitles = htmlColumnsTitles;
+        attrs.htmlColumns = htmlColumns;
+
         return $interpolate('<div class="ngLoupeField">\
                 <input\
                   type="text"\
@@ -54,15 +85,44 @@
                   <div id="ngLoupeFieldModal-{{id}}" class="ngLoupeFieldModal">\
                     <div>\
                       <a href="#close" title="Close" class="ngLoupeFieldModalClose">X</a>\
+                      <h2>{{title}}</h2>\
+                      <div class="ngLoupeFieldFilterInput">\
+                        <span>Filter: <input ng-model="filterText{{id}}"></span>\
+                      </div>\
+                      <br/>\
+                      <div class="ngLoupeFieldTableContainer">\
+                        <table>\
+                          <thead>\
+                            <tr>\
+                              <td></td>\
+                             {{htmlColumnsTitles}}\
+                            </tr>\
+                          </thead>\
+                          <tbody>\
+                            <tr ng-repeat="x in ngLoupeFieldData{{id}} | filter:filterText{{id}}">\
+                              <td><input ng-click="onSelectElement($event)" type="checkbox" /></td>\
+                              {{htmlColumns}}\
+                            </tr>\
+                          </tbody>\
+                        </table>\
+                      </div>\
+                      <br/>\
+                      <input type="submit" class="ngLoupeFieldModalSelectInput" />\
                     </div>\
                   </div>\
                 </div>')(attrs);
       },
       compile: function(element, attrs, transclude) {
         return function(scope) {
-          ngLoupeFieldService.getJSON(attrs.path).success(function(data) {
-            
-          });
+
+          // If path attribute was declared
+          if(attrs.path){
+            ngLoupeFieldService.getJSON(attrs.path).success(function(data) {
+              scope["ngLoupeFieldData" + attrs.id] = data;
+            });
+            return;
+          }
+
         };
       }
 
