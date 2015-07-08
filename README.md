@@ -20,23 +20,17 @@ To use it you need of course AngularJS, so make sure it is loaded first. I alway
 ```
 
 ngLoupeField directive uses [Font Awesome](http://fortawesome.github.io/Font-Awesome/) to print loupe icon, so
-you need to include the stylesheet of Font-Awesome:
+you need to include the stylesheet of Font-Awesome. Also, you should load the stylesheet of the loupe field component:
 
 ```html
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-```
-
-Also you should load the stylesheet of the loupe field component:
-
-```html
 	<link rel="stylesheet" href="dist/ngLoupeField.min.css">
 ```
 
-Then in your HTML you should load it before the script of your main app. Like this:
+Then in your HTML you should load ngLoupeField directive like this:
 
 ```html
 	<script type="text/javascript" src="dist/ngLoupeField.min.js"></script>
-	<script type="text/javascript" src="app.js"></script>
 ```
 
 In your main script file you should add it as dependency:
