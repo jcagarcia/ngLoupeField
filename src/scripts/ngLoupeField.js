@@ -26,46 +26,67 @@
  */
 (function(angular) {
 
-  /*
-   * Creating new ngLoupeField module where register directives, 
-   * services and controllers.
-   */
-  var module = angular.module("ngLoupeField", []);
+    /*
+     * Creating new ngLoupeField module where register directives, 
+     * services and controllers.
+     */
+    var module = angular.module("ngLoupeField", []);
 
-  /* 
-   * This function returns the DDO (Directive Definition Object) of
-   * ngLoupeField.
-   */
-  function fnNgLoupeFieldDirective($interpolate) {
-    return {
-      restrict: "E",
-      controller: fnNgLoupeFieldController,
-      replace: true,
-      template: function(element, attrs) {
-        return $interpolate('<div class="ngLoupeField">\
+    /* 
+     * This function returns the DDO (Directive Definition Object) of
+     * ngLoupeField.
+     */
+    function fnNgLoupeFieldDirective($interpolate) {
+      return {
+        restrict: "E",
+        controller: fnNgLoupeFieldController,
+        replace: true,
+        template: function(element, attrs) {
+          return $interpolate('<div class="ngLoupeField">\
                 <input\
                   type="text"\
                   placeholder="{{placeholder}}"\
                   class="{{class}}"\
                   id="{{id}}" />\
-                  <span class="fa fa-search"></span>\
-              </div>')(attrs);
+                  <a href="#ngLoupeFieldModal-{{id}}" class="fa fa-search"></a>\
+                  <div id="ngLoupeFieldModal-{{id}}" class="ngLoupeFieldModal">\
+                    <div>\
+                      <a href="#close" title="Close" class="ngLoupeFieldModalClose">X</a>\
+                      <h2>Modal Box</h2>\
+                      <p>{{id}}</p>\
+                      <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>\
+                    </div>\
+                  </div>\
+                </div>')(attrs);
+          }
+
+        };
       }
 
-    };
-  }
+      /* 
+       * This function implements ngLoupeField controller
+       * with all necessary logic
+       */
+      function fnNgLoupeFieldController($scope) {
 
-  /* 
-   * This function implements ngLoupeField controller
-   * with all necessary logic
-   */
-  function fnNgLoupeFieldController() {
+        $scope.onClickLoupeBtn = function($event) {
+          // Getting loupeBtn
+          var loupeBtn = $event.currentTarget;
+          // Getting parent div
+          var parent = angular.element(loupeBtn).parent();
+          // Getting modal div
+          var modal = angular.element(parent).find("div")[0];
+          // Showing modal
+          modal.style.opacity = 1;
+        }
+      }
 
-  }
+      // Injecting dependencies on Directive Definition Object
+      fnNgLoupeFieldDirective.$inject = ["$interpolate"];
 
-  // Injecting dependencies on Directive Definition Object
-  fnNgLoupeFieldDirective.$inject = ["$interpolate"];
+      // Injecting dependencies on Directive Controller
+      fnNgLoupeFieldController.$inject = ["$scope"];
 
-  // Generating directive ngLoupeField
-  module.directive("ngLoupeField", fnNgLoupeFieldDirective);
-}(angular));
+      // Generating directive ngLoupeField
+      module.directive("ngLoupeField", fnNgLoupeFieldDirective);
+    }(angular));
