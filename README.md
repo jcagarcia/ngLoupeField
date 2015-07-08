@@ -19,6 +19,13 @@ To use it you need of course AngularJS, so make sure it is loaded first. I alway
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
 ```
 
+ngLoupeField directive uses [Font Awesome](http://fortawesome.github.io/Font-Awesome/) to print loupe icon, so
+you need to include the stylesheet of Font-Awesome:
+
+```html
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+```
+
 Also you should load the stylesheet of the loupe field component:
 
 ```html

@@ -13,10 +13,9 @@
 
 .ngLoupeField span{
   font-size: 1.2em;
-  width: 20%;
+  width: 10%;
   padding:0.4em;
-  background-color:#EEEEEE;
-  border:1px solid #000000;
+  cursor: pointer;
 }
 
 .ngLoupeField ul{
