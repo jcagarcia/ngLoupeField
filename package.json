@@ -1,0 +1,29 @@
+{
+  "name": "ngLoupeField",
+  "version": "0.1.0",
+  "description": "AngularJS directive to include loupe field components in your AngularJS applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcagarcia/ngLoupeField.git"
+  },
+  "keywords": [
+    "ngLoupeField",
+    "AngularJS",
+    "directive",
+    "loupe",
+    "field",
+    "autocomplete"
+  ],
+  "author": "Juan Carlos García del Canto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcagarcia/ngLoupeField/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  }
+}
