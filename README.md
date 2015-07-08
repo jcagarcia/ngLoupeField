@@ -1,6 +1,6 @@
 # AngularJS - ngLoupeField directive
 
-AngularJS directive to include loupe field components in your AngularJS applications! You can load the suggestions from a remote REST API, it also supports promises.
+AngularJS directive to include loupe field components in your AngularJS applications! You can load the suggestions from a remote REST API, it also supports javascript objects.
 
 It's based on [loupe field component](https://github.com/DISID/gvnix-samples/tree/master/quickstart-app#loupe-fields) from [gvNIX](http://www.gvnix.org) project.
 

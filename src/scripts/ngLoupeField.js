@@ -26,11 +26,14 @@
  */
 (function(angular) {
 
+  var module; 
+  if(!angular) return;
+
   /*
    * Creating new ngLoupeField module where register directives, 
    * services and controllers.
    */
-  var module = angular.module("ngLoupeField", []);
+  module = angular.module("ngLoupeField", []);
 
   /* 
    * This function returns the DDO (Directive Definition Object) of
