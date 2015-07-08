@@ -2,7 +2,7 @@
 
 AngularJS directive to include loupe field components in your AngularJS applications! You can load the suggestions from a remote REST API, it also supports javascript objects.
 
-It's based on [loupe field component](https://github.com/DISID/gvnix-samples/tree/master/quickstart-app#loupe-fields) from [gvNIX](http://www.gvnix.org) project.
+It's based on [loupe field component](https://github.com/DISID/gvnix-samples/tree/master/quickstart-app#loupe-fields) from [gvNIX](http://www.gvnix.org/en/index.html) project.
 
 Checkout the demo to see what it does.
 
@@ -17,8 +17,8 @@ ngLoupeField uses [Angular Datatables](http://l-lin.github.io/angular-datatables
 To include Angular Datatables into your AngularJS project you must include the JS file in this order. AngularJS MUST use jQuery and not its jqLite!
 
 ```html
-	<script src="jquery.min.js"></script>
-	<script src="jquery.dataTables.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
 	<script src="angular-datatables.min.js"></script>
 ```
