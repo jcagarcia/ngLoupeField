@@ -26,23 +26,23 @@
  */
 (function(angular) {
 
-    /*
-     * Creating new ngLoupeField module where register directives, 
-     * services and controllers.
-     */
-    var module = angular.module("ngLoupeField", []);
+  /*
+   * Creating new ngLoupeField module where register directives, 
+   * services and controllers.
+   */
+  var module = angular.module("ngLoupeField", []);
 
-    /* 
-     * This function returns the DDO (Directive Definition Object) of
-     * ngLoupeField.
-     */
-    function fnNgLoupeFieldDirective($interpolate) {
-      return {
-        restrict: "E",
-        controller: fnNgLoupeFieldController,
-        replace: true,
-        template: function(element, attrs) {
-          return $interpolate('<div class="ngLoupeField">\
+  /* 
+   * This function returns the DDO (Directive Definition Object) of
+   * ngLoupeField.
+   */
+  function fnNgLoupeFieldDirective($interpolate) {
+    return {
+      restrict: "E",
+      controller: fnNgLoupeFieldController,
+      replace: true,
+      template: function(element, attrs) {
+        return $interpolate('<div class="ngLoupeField">\
                 <input\
                   type="text"\
                   placeholder="{{placeholder}}"\
@@ -58,25 +58,25 @@
                     </div>\
                   </div>\
                 </div>')(attrs);
-          }
-
-        };
       }
 
-      /* 
-       * This function implements ngLoupeField controller
-       * with all necessary logic
-       */
-      function fnNgLoupeFieldController($scope) {
+    };
+  }
 
-      }
+  /* 
+   * This function implements ngLoupeField controller
+   * with all necessary logic
+   */
+  function fnNgLoupeFieldController($scope) {
 
-      // Injecting dependencies on Directive Definition Object
-      fnNgLoupeFieldDirective.$inject = ["$interpolate"];
+  }
 
-      // Injecting dependencies on Directive Controller
-      fnNgLoupeFieldController.$inject = ["$scope"];
+  // Injecting dependencies on Directive Definition Object
+  fnNgLoupeFieldDirective.$inject = ["$interpolate"];
 
-      // Generating directive ngLoupeField
-      module.directive("ngLoupeField", fnNgLoupeFieldDirective);
-    }(angular));
+  // Injecting dependencies on Directive Controller
+  fnNgLoupeFieldController.$inject = ["$scope"];
+
+  // Generating directive ngLoupeField
+  module.directive("ngLoupeField", fnNgLoupeFieldDirective);
+}(angular));
