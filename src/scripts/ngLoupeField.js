@@ -68,6 +68,7 @@
         var htmlColumnsTitles = "";
         for(i in columns){
           var column = columns[i].trim();
+          //htmlColumnsTitles+="<td>" + column + " <span ng-click='onClickSort($event)' data-columnField='"+ column +"' class='fa fa-sort' style='cursor:pointer;'></span></td>";
           htmlColumnsTitles+="<td>" + column + "</td>";
           htmlColumns+="<td>{{ x." + column + " }}</td>";
         }
@@ -99,7 +100,7 @@
                             </tr>\
                           </thead>\
                           <tbody>\
-                            <tr ng-repeat="x in ngLoupeFieldData{{id}} | filter:filterText{{id}}">\
+                            <tr ng-repeat="x in ngLoupeFieldData{{id}} | filter:filterText{{id}} | orderBy: \'{{currentOrder}}\'">\
                               <td><input ng-click="onSelectElement($event)" type="checkbox" /></td>\
                               {{htmlColumns}}\
                             </tr>\
@@ -124,6 +125,30 @@
           }
 
         };
+      },
+      controller: function($scope){
+
+        // Generating click action on sort button
+        /*$scope.onClickSort = function($event){
+          var scope = angular.element($event.currentTarget).scope();
+          var sortButton = $event.target;
+          var fieldToSort = sortButton.dataset.columnfield;
+          
+          // Checking and updating sort order
+          var className = sortButton.className;
+          var nextOrder = "";
+          if( className == "fa fa-sort" || className == "fa fa-sort-asc"){
+            nextOrder = "+";
+            sortButton.setAttribute("class", "fa fa-sort-desc");
+          }else if (className == "fa fa-sort-desc"){
+            nextOrder = "-";
+            sortButton.setAttribute("class", "fa fa-sort-asc");
+          }
+
+          // Getting current sort
+          var currentOrder = scope.currentOrder;
+
+        }*/
       }
 
     };
