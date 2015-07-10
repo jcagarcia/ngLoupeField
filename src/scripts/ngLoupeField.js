@@ -68,7 +68,7 @@
         var htmlColumnsTitles = "";
         for (i in columns) {
           var column = columns[i].trim();
-          htmlColumnsTitles+="<td>" + column + " <span ng-click='onClickSort($event)' data-columnField='"+ column +"' class='fa fa-sort' style='cursor:pointer;'></span></td>";
+          htmlColumnsTitles += "<td>" + column + " <span ng-click='onClickSort($event)' data-columnField='" + column + "' class='fa fa-sort' style='cursor:pointer;'></span></td>";
           htmlColumns += "<td>{{ x." + column + " }}</td>";
         }
 
@@ -128,41 +128,39 @@
       controller: function($scope) {
 
         // Generating click action on sort button
-        $scope.onClickSort = function($event){
+        $scope.onClickSort = function($event) {
           var scope = angular.element($event.currentTarget).scope();
           var sortButton = $event.target;
           var fieldToSort = sortButton.dataset.columnfield;
-          
+
           // Checking and updating sort order
           var className = sortButton.className;
           var nextOrder = "";
-          if( className == "fa fa-sort" || className == "fa fa-sort-asc"){
+          if (className == "fa fa-sort" || className == "fa fa-sort-asc") {
             nextOrder = "+";
             sortButton.setAttribute("class", "fa fa-sort-desc");
-          }else if (className == "fa fa-sort-desc"){
+          } else if (className == "fa fa-sort-desc") {
             nextOrder = "-";
             sortButton.setAttribute("class", "fa fa-sort-asc");
           }
 
-          if(scope.model){
+          if (scope.model) {
             // Getting current sort
             var currentOrder = scope.model.currentOrder;
             var previousOrder = nextOrder == "+" ? "-" : "+";
-            var position = currentOrder.indexOf(previousOrder+fieldToSort);
-            if(position == -1){
-              currentOrder.push(nextOrder+fieldToSort);
-              debugger;
-            }else{
-              currentOrder[position] = nextOrder+fieldToSort;
+            var position = currentOrder.indexOf(previousOrder + fieldToSort);
+            if (position == -1) {
+              currentOrder.push(nextOrder + fieldToSort);
+            } else {
+              currentOrder[position] = nextOrder + fieldToSort;
             }
 
-          }else{
+          } else {
             scope.model = {};
-            scope.model.currentOrder = [nextOrder+fieldToSort];
+            scope.model.currentOrder = [nextOrder + fieldToSort];
           }
 
 
-          
 
         }
       }
