@@ -25,6 +25,7 @@
           <ng-loupe-field id="countries" 
             path="data/countries.json" 
             columns="name,code"
+            caption="name"
             title="Select countries"
             placeholder="type to search countries..."></ng-loupe-field>
           <!-- END of ngLoupeField component, using local JSON -->
@@ -42,6 +43,7 @@
           <ng-loupe-field id="users"
             path="http://jsonplaceholder.typicode.com/users"
             columns="name, username, email, address.street"
+            caption="name"
             placeholder="type to search users..."></ng-loupe-field>
           <!-- END of ngLoupeField component, using remote REST service -->
 

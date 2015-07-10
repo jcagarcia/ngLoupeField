@@ -53,7 +53,13 @@
 
         // Columns attribute is required
         if (!attrs.columns) {
-          console.log("ERROR: ngLoupeField needs a valid columns attribute.");
+          console.log("ERROR: ngLoupeField with id '"+ attrs.id +"' needs a valid columns attribute.");
+          return;
+        }
+
+        // Caption attribute is required
+        if(!attrs.caption) {
+          console.log("ERROR: ngLoupeField with id '"+ attrs.id +"' needs a valid caption attribute.");
           return;
         }
 
@@ -66,10 +72,22 @@
         var columns = attrs.columns.split(",");
         var htmlColumns = "";
         var htmlColumnsTitles = "";
+        var captionMatchs = false;
         for (i in columns) {
           var column = columns[i].trim();
           htmlColumnsTitles += "<td>" + column + " <span ng-click='onClickSort($event)' data-columnField='" + column + "' class='fa fa-sort' style='cursor:pointer;'></span></td>";
-          htmlColumns += "<td>{{ x." + column + " }}</td>";
+          if(column === attrs.caption){
+            captionMatchs = true;
+            htmlColumns += "<td id='caption'>{{ x." + column + " }}</td>";
+          }else{
+            htmlColumns += "<td>{{ x." + column + " }}</td>";
+          }
+        }
+
+        // Checking if some column match with caption. If not, show an error
+        if(!captionMatchs) {
+          console.log("ERROR: ngLoupeField with id '"+ attrs.id +"' doesn't have column with caption name '"+attrs.caption+"'.");
+          return;
         }
 
         attrs.htmlColumnsTitles = htmlColumnsTitles;
@@ -159,8 +177,16 @@
             scope.model = {};
             scope.model.currentOrder = [nextOrder + fieldToSort];
           }
+        }
 
+        // Generating select action on checkboxes
+        $scope.onSelectElement = function($event){
+          var scope = angular.element($event.currentTarget).scope();
+          var checkBox = $event.target;
 
+          var currentValue = checkBox.parentElement.parentElement.querySelector("#caption").innerHTML;
+
+          alert(currentValue);
 
         }
       }
