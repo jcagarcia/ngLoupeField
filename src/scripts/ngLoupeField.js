@@ -26,8 +26,8 @@
  */
 (function(angular) {
 
-  var module; 
-  if(!angular) return;
+  var module;
+  if (!angular) return;
 
   /*
    * Creating new ngLoupeField module where register directives, 
@@ -46,19 +46,19 @@
       template: function(element, attrs) {
 
         // Id attribute is required
-        if(!attrs.id){
+        if (!attrs.id) {
           console.log("ERROR: ngLoupeField needs a valid id attribute.");
           return;
         }
 
         // Columns attribute is required
-        if(!attrs.columns){
+        if (!attrs.columns) {
           console.log("ERROR: ngLoupeField needs a valid columns attribute.");
           return;
         }
 
         // Validating title attribute
-        if(!attrs.title){
+        if (!attrs.title) {
           attrs.title = "Select from list";
         }
 
@@ -66,11 +66,10 @@
         var columns = attrs.columns.split(",");
         var htmlColumns = "";
         var htmlColumnsTitles = "";
-        for(i in columns){
+        for (i in columns) {
           var column = columns[i].trim();
-          //htmlColumnsTitles+="<td>" + column + " <span ng-click='onClickSort($event)' data-columnField='"+ column +"' class='fa fa-sort' style='cursor:pointer;'></span></td>";
-          htmlColumnsTitles+="<td>" + column + "</td>";
-          htmlColumns+="<td>{{ x." + column + " }}</td>";
+          htmlColumnsTitles+="<td>" + column + " <span ng-click='onClickSort($event)' data-columnField='"+ column +"' class='fa fa-sort' style='cursor:pointer;'></span></td>";
+          htmlColumns += "<td>{{ x." + column + " }}</td>";
         }
 
         attrs.htmlColumnsTitles = htmlColumnsTitles;
@@ -100,7 +99,7 @@
                             </tr>\
                           </thead>\
                           <tbody>\
-                            <tr ng-repeat="x in ngLoupeFieldData{{id}} | filter:filterText{{id}} | orderBy: \'{{currentOrder}}\'">\
+                            <tr ng-repeat="x in ngLoupeFieldData{{id}} | filter:filterText{{id}} | orderBy: model.currentOrder">\
                               <td><input ng-click="onSelectElement($event)" type="checkbox" /></td>\
                               {{htmlColumns}}\
                             </tr>\
@@ -117,7 +116,7 @@
         return function(scope) {
 
           // If path attribute was declared
-          if(attrs.path){
+          if (attrs.path) {
             ngLoupeFieldService.getJSON(attrs.path).success(function(data) {
               scope["ngLoupeFieldData" + attrs.id] = data;
             });
@@ -126,10 +125,10 @@
 
         };
       },
-      controller: function($scope){
+      controller: function($scope) {
 
         // Generating click action on sort button
-        /*$scope.onClickSort = function($event){
+        $scope.onClickSort = function($event){
           var scope = angular.element($event.currentTarget).scope();
           var sortButton = $event.target;
           var fieldToSort = sortButton.dataset.columnfield;
@@ -145,10 +144,27 @@
             sortButton.setAttribute("class", "fa fa-sort-asc");
           }
 
-          // Getting current sort
-          var currentOrder = scope.currentOrder;
+          if(scope.model){
+            // Getting current sort
+            var currentOrder = scope.model.currentOrder;
+            var previousOrder = nextOrder == "+" ? "-" : "+";
+            var position = currentOrder.indexOf(previousOrder+fieldToSort);
+            if(position == -1){
+              currentOrder.push(nextOrder+fieldToSort);
+              debugger;
+            }else{
+              currentOrder[position] = nextOrder+fieldToSort;
+            }
 
-        }*/
+          }else{
+            scope.model = {};
+            scope.model.currentOrder = [nextOrder+fieldToSort];
+          }
+
+
+          
+
+        }
       }
 
     };
