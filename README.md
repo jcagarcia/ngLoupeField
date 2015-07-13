@@ -41,7 +41,7 @@ In your main script file you should add it as dependency:
 
 ## Usage
 
-If you want a loupe field on your AngularJS application, you can just use the tag `<ng-loupe-field>` tag in your HTML adding some necessary parameters.
+If you want a loupe field on your AngularJS application, you can just use `<ng-loupe-field>` tag in your HTML adding some necessary parameters.
 
 ### Attributes
 
