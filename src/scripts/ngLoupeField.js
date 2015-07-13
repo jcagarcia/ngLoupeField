@@ -133,6 +133,12 @@
       compile: function(element, attrs, transclude) {
         return function(scope) {
 
+          // Checking if exists more than one component with the same id
+          if(document.querySelectorAll("input[id='"+attrs.id+"']").length > 1){
+            console.log("WARNING: ngLoupeField needs a valid id attribute. Exists more than one element with id '" + attrs.id +"'");
+            return;
+          }
+
           // If path attribute was declared
           if (attrs.path) {
             ngLoupeFieldService.getJSON(attrs.path).success(function(data) {
