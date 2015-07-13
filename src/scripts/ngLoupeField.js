@@ -102,7 +102,7 @@
                   <a href="#ngLoupeFieldModal-{{id}}" class="fa fa-search"></a>\
                   <div id="ngLoupeFieldModal-{{id}}" class="ngLoupeFieldModal">\
                     <div>\
-                      <a href="#close" title="Close" class="ngLoupeFieldModalClose">X</a>\
+                      <a href="#close" title="Close" id="ngLoupeFieldModalClose{{id}}" class="ngLoupeFieldModalClose">X</a>\
                       <h2>{{title}}</h2>\
                       <div class="ngLoupeFieldFilterInput">\
                         <span>Filter: <input ng-model="filterText{{id}}"></span>\
@@ -118,14 +118,14 @@
                           </thead>\
                           <tbody>\
                             <tr ng-repeat="x in ngLoupeFieldData{{id}} | filter:filterText{{id}} | orderBy: model.currentOrder">\
-                              <td><input ng-click="onSelectElement($event)" type="checkbox" /></td>\
+                              <td><input ng-model="selection" ng-click="onSelectElement($event)" type="checkbox" /></td>\
                               {{htmlColumns}}\
                             </tr>\
                           </tbody>\
                         </table>\
                       </div>\
                       <br/>\
-                      <input type="submit" class="ngLoupeFieldModalSelectInput" />\
+                      <input data-panelId="{{id}}" ng-click="onClickSubmit($event)" type="submit" class="ngLoupeFieldModalSelectInput" />\
                     </div>\
                   </div>\
                 </div>')(attrs);
@@ -181,13 +181,39 @@
 
         // Generating select action on checkboxes
         $scope.onSelectElement = function($event){
-          var scope = angular.element($event.currentTarget).scope();
+          // Getting scope
+          var scope = angular.element($event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).scope();
+          // Getting current checkbox
           var checkBox = $event.target;
-
+          // Getting selected caption
           var currentValue = checkBox.parentElement.parentElement.querySelector("#caption").innerHTML;
 
-          alert(currentValue);
+          // Disabling all other selects
+          var allSelects = checkBox.parentElement.parentElement.parentElement.querySelectorAll("input[type='checkbox']");
+          for(i in allSelects){
+            allSelects[i].checked = false;
+          }
 
+          // Check current checkbox
+          checkBox.checked = true;
+          // Saving current caption value on scope
+          scope.selectedValue = currentValue;
+        }
+
+
+        // Generating action onClick submit button
+        $scope.onClickSubmit = function($event){
+          // Getting scope
+          var scope = angular.element($event.currentTarget.parentElement).scope();
+          var currentValue = scope.selectedValue;
+          var button = $event.currentTarget;
+          var panelId = button.dataset.panelid;
+
+          // Setting value on input
+          document.getElementById(panelId).querySelector("input[id='" + panelId + "'").value = currentValue;
+
+          // Closing modal dialog
+          document.getElementById("ngLoupeFieldModalClose"+panelId).click();
         }
       }
 
