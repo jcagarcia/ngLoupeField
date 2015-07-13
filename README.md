@@ -66,11 +66,15 @@ HTML:
 	    placeholder="type to search users..."></ng-loupe-field>
 ```
 
-If you want to show a complete example, visit [demo sources](https://github.com/jcagarcia/ngLoupeField/tree/master/demo);
+If you want to show a complete example, visit [demo sources](https://github.com/jcagarcia/ngLoupeField/tree/master/demo).
 
 ## Development
 
-Feel free to send your issues and pull-requests.
+Feel free to register your issues on https://github.com/jcagarcia/ngLoupeField/issues and send your pull-requests.
+
+````
+	git clone https://github.com/jcagarcia/ngLoupeField.git
+````
 
 ## Change Log
 
