@@ -41,19 +41,36 @@ In your main script file you should add it as dependency:
 
 ## Usage
 
-TBC
+If you want a loupe field on your AngularJS application, you can just use the tag `<ng-loupe-field>` tag in your HTML adding some necessary parameters.
 
-## Attributes
+### Attributes
 
-TBC 
+`id` : Unique identifier of the new loupe field. Every loupe field must have an unique id to prevent errors. If the same id is defined, a WARN will be appear on console.
+
+`path` : Path URL to get JSON object. You could use a REST URL or a local .json file.
+
+`columns` : Columns of the JSON object for which you want to search. This columns will be visible on modal dialog when you press loupe button.
+
+`caption` : Column that you want to use as value when select an item on table.
+
+`placeholder` : *(optional)* Text that you want to show when input loupe field is empty. 
 
 ## Example
 
-TBC
+HTML:
+```html
+	  <ng-loupe-field id="users"
+	    path="http://jsonplaceholder.typicode.com/users"
+	    columns="name, username, email, address.street"
+	    caption="email"
+	    placeholder="type to search users..."></ng-loupe-field>
+```
+
+If you want to show a complete example, shows https://github.com/jcagarcia/ngLoupeField/tree/master/demo[demo sources];
 
 ## Development
 
-TBC
+Feel free to send your issues and pull-requests.
 
 ## Change Log
 
